@@ -11,15 +11,19 @@ class CreateLoginForm extends JFrame implements ActionListener
     JPanel newPanel;  
     JLabel userLabel, passLabel;  
     final JTextField  textField1, textField2;  
-      
+    JComboBox c1;
+    String selectedServer;
     //calling constructor  
     CreateLoginForm()  
-    {     
+    {   
           
         //create label for username   
         userLabel = new JLabel();  
         userLabel.setText("Username");      //set label value for textField1  
-          
+        String s1[] = { "PHP Server", "Servlet" };  
+        c1 = new JComboBox(s1);
+        //c1.addActionListener(this);
+        selectedServer = (String)c1.getSelectedItem();
         //create text field to get username from the user  
         textField1 = new JTextField(15);    //set length of the text  
   
@@ -40,7 +44,7 @@ class CreateLoginForm extends JFrame implements ActionListener
         newPanel.add(passLabel);    //set password label to panel  
         newPanel.add(textField2);   //set text field to panel  
         newPanel.add(b1);           //set button to panel  
-          
+        newPanel.add(c1);
         //set border to panel   
         add(newPanel, BorderLayout.CENTER);  
           
@@ -63,9 +67,9 @@ class CreateLoginForm extends JFrame implements ActionListener
               
             //make page visible to the user  
             page.setVisible(true);  
-              
+            NewPage.server_type = selectedServer;
             //create a welcome label and set it to the new page  
-            JLabel wel_label = new JLabel("Welcome: "+userValue);  
+            JLabel wel_label = new JLabel("Welcome: "+userValue + " Server Type = " +selectedServer);  
             page.getContentPane().add(wel_label);  
         }  
         else{  
